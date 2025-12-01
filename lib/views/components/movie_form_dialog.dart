@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movie/models/movie.dart';
 import 'package:movie/viewmodels/movie_view_model.dart';
+import 'package:movie/views/components/custom_text_fields.dart';
 import 'package:provider/provider.dart';
 
 class MovieFormDialog extends StatefulWidget {
@@ -67,36 +68,38 @@ class _MyWidgetState extends State<MovieFormDialog> {
         child: Form(
           child: Column(
             children: [
-              TextFormField(
+              CustomTextFields(
                 controller: _titleController,
-                decoration: const InputDecoration(labelText: "titolo"),
+                label: "Titolo",
+                keyboardType: TextInputType.text,
                 validator: (value) => value == null || value.isEmpty
                     ? "campo obbligatorio"
                     : null,
               ),
-              TextFormField(
+              CustomTextFields(
                 controller: _durationController,
-                decoration: const InputDecoration(
-                  labelText: "durata in minuti",
-                ),
+                label: "Durata in minuti",
                 keyboardType: TextInputType.number,
-                validator: (value) => value == null || int.parse(value) == null
+                validator: (value) =>
+                    value == null || int.tryParse(value) == null
                     ? "inserisci un numero"
                     : null,
               ),
-              TextFormField(
+              CustomTextFields(
                 controller: _plotController,
-                decoration: const InputDecoration(labelText: "trama"),
+                label: "Trama",
+                keyboardType: TextInputType.text,
                 validator: (value) => value == null || value.isEmpty
                     ? "campo obbligatorio"
                     : null,
               ),
-              TextFormField(
+              CustomTextFields(
                 controller: _yearController,
-                decoration: const InputDecoration(labelText: "anno di uscita"),
+                label: "Anno di uscita",
                 keyboardType: TextInputType.number,
-                validator: (value) => value == null || int.parse(value) == null
-                    ? "inserisci un anno valido"
+                validator: (value) =>
+                    value == null || int.tryParse(value) == null
+                    ? "inserisci un numero"
                     : null,
               ),
             ],
